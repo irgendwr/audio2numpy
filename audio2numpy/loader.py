@@ -1,6 +1,6 @@
 import numpy as np 
 import logging
-from .mp3dec import ffmpeg_available, FFmpegAudioFile
+from .ffmpegdec import ffmpeg_available, FFmpegAudioFile
 from .wavdec import RawAudioFile
 from .exceptions import DecodeError, NoBackendError, AudioFormatError
 
@@ -48,10 +48,10 @@ def _audio_read(path):
             return FFmpegAudioFile(path)
         except DecodeError:
             pass
-    msg = """It is likely that ffmpeg is not yet installed. Please refer github repo for instruction. 
+    msg = """It is likely that ffmpeg is not yet installed. Please refer GitHub repo for instructions: https://github.com/irgendwr/audio2numpy#readme 
     MacOS: brew install ffmpeg.
     Linux: sudo apt-get install ffmpeg
-    Windows: Download distribution from ffmpeg website, unzip, add the path of bin (e.g. `C:\ffmpeg\bin`) to system PATH."""
+    Windows: Download distribution from ffmpeg website, unzip, add the path of bin (e.g. `C:\\ffmpeg\\bin`) to system PATH."""
     raise NoBackendError(msg)
 
 
